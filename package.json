@@ -1,0 +1,21 @@
+{
+    "name": "nestofgoose",
+    "version": "1.0.0",
+    "description": "Integrate Typegoose with NestJS!",
+    "main": "index.js",
+    "keywords": ["nest", "nestjs", "mongoose", "typegoose", "mongo", "mongodb"],
+    "repository": {
+        "url": "https://github.com/GrapeoffJS/nestofgoose",
+        "type": "git"
+    },
+    "author": "Dmitriy Grape <grapeoff.official@gmail.com>",
+    "engines": {
+        "node": ">=16.16.0"
+    },
+    "bugs": {
+        "url": "https://github.com/GrapeoffJS/nestofgoose/issues",
+        "email": "grapeoff.official@gmail.com"
+    },
+    "license": "GNU General Public License 3.0",
+    "private": false
+}
