@@ -43,7 +43,7 @@ export class KindagooseCoreModule implements OnApplicationShutdown {
     }
 
     async onApplicationShutdown() {
-        const connection: Connection = this.moduleRef.get(this.connectionName);
+        const connection = this.moduleRef.get<Connection>(this.connectionName);
         if (connection) await connection.close();
     }
 }
