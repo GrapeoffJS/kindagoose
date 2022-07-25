@@ -1,7 +1,7 @@
 import { DynamicModule, Global, Inject, Logger, Module, OnApplicationShutdown, Provider } from '@nestjs/common';
 import { ModuleRef } from '@nestjs/core';
 import mongoose, { Connection } from 'mongoose';
-import { catchError, delay, from, lastValueFrom, retry } from 'rxjs';
+import { catchError, defer, delay, from, lastValueFrom, retry } from 'rxjs';
 
 import { KINDAGOOSE_CONNECTION_NAME } from '../constants/kindagoose.constants';
 import { KindagooseModuleOptions } from '../interfaces/kindagoose-module-options.interface';
@@ -25,13 +25,11 @@ export class KindagooseCoreModule implements OnApplicationShutdown {
                 const logger = new Logger('KindagooseModule');
 
                 return await lastValueFrom(
-                    from(mongoose.createConnection(uri, mongooseConnectOptions).asPromise()).pipe(
+                    from(defer(() => mongoose.createConnection(uri, mongooseConnectOptions).asPromise())).pipe(
                         catchError((err, caught) => {
                             logger.error('Caught an error when tried to connect. Retrying...');
-                            return caught;
+                            return caught.pipe(delay(retryDelay || 3000), retry(retryAttempts || 3));
                         }),
-                        delay(retryDelay || 3000),
-                        retry(retryAttempts || 3),
                     ),
                 );
             },
