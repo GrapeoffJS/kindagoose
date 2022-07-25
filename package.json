@@ -1,6 +1,6 @@
 {
     "name": "kindagoose",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "Integrate Typegoose with NestJS!",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
