@@ -15,11 +15,13 @@ export const createModelProviders = (options: ModelRegistrationOptions[], connec
             useValue: model,
         });
 
-        for (const discriminator of option.discriminators) {
-            providers.push({
-                provide: getModelToken(discriminator.name, connectionName),
-                useValue: getDiscriminatorModelForClass(model, discriminator),
-            });
+        if (option.discriminators) {
+            for (const discriminator of option.discriminators) {
+                providers.push({
+                    provide: getModelToken(discriminator.name, connectionName),
+                    useValue: getDiscriminatorModelForClass(model, discriminator),
+                });
+            }
         }
     }
 
