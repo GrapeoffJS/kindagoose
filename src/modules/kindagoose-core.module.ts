@@ -28,8 +28,10 @@ export class KindagooseCoreModule implements OnApplicationShutdown {
                     from(mongoose.createConnection(uri, mongooseConnectOptions).asPromise()).pipe(
                         catchError((err, caught) => {
                             logger.error('Caught an error when tried to connect. Retrying...');
-                            return caught.pipe(retry(retryAttempts || 3), delay(retryDelay || 3000));
+                            return caught;
                         }),
+                        delay(retryDelay || 3000),
+                        retry(retryAttempts || 3),
                     ),
                 );
             },
