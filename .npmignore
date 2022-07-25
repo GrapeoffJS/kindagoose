@@ -1,0 +1,7 @@
+node_modules
+dist
+.github
+src/index.ts
+yarn.lock
+.eslintrc.js
+tsconfig.json
