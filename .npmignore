@@ -1,7 +1,7 @@
 node_modules
 dist
 .github
-src/index.ts
+src
 yarn.lock
 .eslintrc.js
 tsconfig.json
