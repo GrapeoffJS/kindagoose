@@ -1,6 +1,6 @@
 {
     "name": "kindagoose",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Integrate Typegoose with NestJS!",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
@@ -26,7 +26,8 @@
     },
     "scripts": {
         "build": "rimraf dist && tsc -p tsconfig.json",
-        "build:dev": "rimraf dist && tsc --watch -p tsconfig.json"
+        "build:dev": "rimraf dist && tsc --watch -p tsconfig.json",
+        "prepare": "yarn build"
     },
     "license": "GPL-3.0-only",
     "private": false,
