@@ -13,7 +13,7 @@
         "mongodb"
     ],
     "repository": {
-        "url": "https://github.com/GrapeoffJS/nestofgoose",
+        "url": "https://github.com/GrapeoffJS/kindagoose",
         "type": "git"
     },
     "author": "Dmitriy Grape <grapeoff.official@gmail.com>",
@@ -21,7 +21,7 @@
         "node": ">=16.16.0"
     },
     "bugs": {
-        "url": "https://github.com/GrapeoffJS/nestofgoose/issues",
+        "url": "https://github.com/GrapeoffJS/kindagoose/issues",
         "email": "grapeoff.official@gmail.com"
     },
     "scripts": {
