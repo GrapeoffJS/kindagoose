@@ -1,3 +1,5 @@
+export { PostEvents } from './constants/post-events';
+export { PreEvents } from './constants/pre-events';
 export { InjectConnection } from './decorators/inject-connection.decorator';
 export { InjectModel } from './decorators/inject-model.decorator';
 export { AnyClass } from './interfaces/any-class.interface';
