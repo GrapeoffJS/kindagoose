@@ -1,7 +1,8 @@
-import { DynamicModule, Global, Inject, Module, OnApplicationShutdown, Provider } from '@nestjs/common';
+import { DynamicModule, Global, Inject, Logger, Module, OnApplicationShutdown, Provider } from '@nestjs/common';
 import { ModuleRef } from '@nestjs/core';
-import mongoose, { Connection } from 'mongoose';
-import { defer, from, lastValueFrom, retry } from 'rxjs';
+import { Connection } from 'mongoose';
+import * as mongoose from 'mongoose';
+import { defer, delay, from, lastValueFrom, retryWhen, scan } from 'rxjs';
 
 import { KINDAGOOSE_CONNECTION_NAME } from '../constants/kindagoose.constants';
 import { KindagooseModuleOptions } from '../interfaces/kindagoose-module-options.interface';
@@ -22,9 +23,25 @@ export class KindagooseCoreModule implements OnApplicationShutdown {
         const connectionProvider: Provider = {
             provide: connectionToken,
             async useFactory() {
+                const logger = new Logger('KindagooseModule');
+
                 return await lastValueFrom(
                     from(defer(() => mongoose.createConnection(uri, mongooseConnectOptions).asPromise())).pipe(
-                        retry({ delay: retryDelay, count: retryAttempts }),
+                        retryWhen(e =>
+                            e.pipe(
+                                scan((errorCount, error) => {
+                                    logger.error(
+                                        `Unable to connect to the database. Retrying (${errorCount + 1})...`,
+                                        '',
+                                    );
+                                    if (errorCount + 1 >= (retryAttempts || 3)) {
+                                        throw error;
+                                    }
+                                    return errorCount + 1;
+                                }, 0),
+                                delay(retryDelay || 3000),
+                            ),
+                        ),
                     ),
                 );
             },
