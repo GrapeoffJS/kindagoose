@@ -5,3 +5,4 @@ export { ModelRegistrationOptions } from './interfaces/model-registration-option
 export { TypegooseSchema } from './interfaces/typegoose-schema.interface';
 export { KindagooseModule } from './modules/kindagoose.module';
 export { getConnectionToken } from './utils/get-connection-token';
+export { getModelToken } from './utils/get-model-token';
