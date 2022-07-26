@@ -1,6 +1,6 @@
 import { applyDecorators, Injectable, SetMetadata } from '@nestjs/common';
 
-import { AnyClass } from '../interfaces/typegoose-schema.interface';
+import { AnyClass } from '../interfaces/any-class.interface';
 
 /**
  * Mark a class as an event tracker

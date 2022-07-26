@@ -1,6 +1,6 @@
-import { TypegooseSchema } from './typegoose-schema.interface';
+import { AnyClass } from './any-class.interface';
 
 export interface ModelRegistrationOptions {
-    schema: TypegooseSchema;
-    discriminators?: TypegooseSchema[];
+    schema: AnyClass;
+    discriminators?: AnyClass[];
 }
