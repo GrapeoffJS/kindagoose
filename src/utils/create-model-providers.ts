@@ -1,6 +1,6 @@
 import { Provider } from '@nestjs/common';
 import { getDiscriminatorModelForClass, getModelForClass } from '@typegoose/typegoose';
-import { Connection } from 'mongoose';
+import { Connection, Model } from 'mongoose';
 
 import { ModelRegistrationOptions } from '../interfaces/model-registration-options.interface';
 import { getConnectionToken } from './get-connection-token';
@@ -10,13 +10,11 @@ export const createModelProviders = (options: ModelRegistrationOptions[], connec
     const providers: Provider[] = [];
 
     for (const option of options) {
-        const model = getModelForClass(option.schema, {});
-
         providers.push({
             provide: getModelToken(option.schema.name, connectionName),
             inject: [getConnectionToken(connectionName)],
             useFactory(connection: Connection) {
-                return getModelForClass(model, { existingConnection: connection });
+                return getModelForClass(option.schema, { existingConnection: connection });
             },
         });
 
@@ -24,9 +22,9 @@ export const createModelProviders = (options: ModelRegistrationOptions[], connec
             for (const discriminator of option.discriminators) {
                 providers.push({
                     provide: getModelToken(discriminator.name, connectionName),
-                    inject: [getConnectionToken(connectionName)],
-                    useFactory: (connection: Connection) => {
-                        return getDiscriminatorModelForClass(model, discriminator, { existingConnection: connection });
+                    inject: [getModelToken(option.schema.name)],
+                    useFactory: (model: Model<any>) => {
+                        return getDiscriminatorModelForClass(model, discriminator);
                     },
                 });
             }
