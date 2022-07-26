@@ -1,7 +1,7 @@
-import { DynamicModule, Global, Inject, Logger, Module, OnApplicationShutdown, Provider } from '@nestjs/common';
+import { DynamicModule, Global, Inject, Module, OnApplicationShutdown, Provider } from '@nestjs/common';
 import { ModuleRef } from '@nestjs/core';
 import mongoose, { Connection } from 'mongoose';
-import { defer, from, lastValueFrom, retry } from 'rxjs';
+import { defer, from, lastValueFrom } from 'rxjs';
 
 import { KINDAGOOSE_CONNECTION_NAME } from '../constants/kindagoose.constants';
 import { KindagooseModuleOptions } from '../interfaces/kindagoose-module-options.interface';
