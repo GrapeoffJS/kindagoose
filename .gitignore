@@ -1,5 +1,6 @@
 # IDE Specific
 .idea
+.vscode
 
 # Logs
 logs
@@ -105,3 +106,6 @@ dist
 
 # TernJS port file
 .tern-port
+
+tests
+
