@@ -1,11 +1,10 @@
-import { DynamicModule, Global, Inject, Logger, Module, OnApplicationShutdown, Provider } from '@nestjs/common';
-import { ModuleRef } from '@nestjs/core';
-import { Connection } from 'mongoose';
-import * as mongoose from 'mongoose';
-import { defer, delay, from, lastValueFrom, retryWhen, scan } from 'rxjs';
+import { DynamicModule, Global, Inject, Module, OnApplicationShutdown, Provider } from '@nestjs/common';
+import { DiscoveryModule, ModuleRef } from '@nestjs/core';
+import mongoose, { Connection } from 'mongoose';
 
 import { KINDAGOOSE_CONNECTION_NAME } from '../constants/kindagoose.constants';
 import { KindagooseModuleOptions } from '../interfaces/kindagoose-module-options.interface';
+import { MetadataAccessor } from '../providers/metadata-accessor.provider';
 import { getConnectionToken } from '../utils/get-connection-token';
 
 @Global()
@@ -17,40 +16,25 @@ export class KindagooseCoreModule implements OnApplicationShutdown {
     ) {}
 
     static forRoot(uri: string, options: KindagooseModuleOptions): DynamicModule {
-        const { connectionName, retryAttempts, retryDelay, ...mongooseConnectOptions } = options;
+        const { connectionName, ...mongooseConnectOptions } = options;
 
         const connectionToken = getConnectionToken(connectionName);
         const connectionProvider: Provider = {
             provide: connectionToken,
             async useFactory() {
-                const logger = new Logger('KindagooseModule');
-
-                return await lastValueFrom(
-                    from(defer(() => mongoose.createConnection(uri, mongooseConnectOptions).asPromise())).pipe(
-                        retryWhen(e =>
-                            e.pipe(
-                                scan((errorCount, error) => {
-                                    logger.error(
-                                        `Unable to connect to the database. Retrying (${errorCount + 1})...`,
-                                        '',
-                                    );
-                                    if (errorCount + 1 >= (retryAttempts || 3)) {
-                                        throw error;
-                                    }
-                                    return errorCount + 1;
-                                }, 0),
-                                delay(retryDelay || 3000),
-                            ),
-                        ),
-                    ),
-                );
+                return await mongoose.createConnection(uri, mongooseConnectOptions).asPromise();
             },
         };
 
         return {
+            imports: [DiscoveryModule],
             module: KindagooseCoreModule,
-            providers: [connectionProvider, { provide: KINDAGOOSE_CONNECTION_NAME, useValue: connectionToken }],
-            exports: [connectionProvider],
+            providers: [
+                MetadataAccessor,
+                connectionProvider,
+                { provide: KINDAGOOSE_CONNECTION_NAME, useValue: connectionToken },
+            ],
+            exports: [MetadataAccessor, connectionProvider],
         };
     }
 
