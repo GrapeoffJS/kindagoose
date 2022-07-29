@@ -1,4 +1,5 @@
 import { DynamicModule, Module } from '@nestjs/common';
+import { DiscoveryModule } from '@nestjs/core';
 
 import { KindagooseModuleOptions } from '../interfaces/kindagoose-module-options.interface';
 import { ModelRegistrationOptions } from '../interfaces/model-registration-options.interface';
@@ -29,6 +30,7 @@ export class KindagooseModule {
 
         return {
             module: KindagooseModule,
+            imports: [DiscoveryModule],
             providers: modelProviders,
             exports: modelProviders,
         };

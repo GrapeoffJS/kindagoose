@@ -1,10 +1,9 @@
 import { DynamicModule, Global, Inject, Module, OnApplicationShutdown, Provider } from '@nestjs/common';
-import { DiscoveryModule, ModuleRef } from '@nestjs/core';
+import { ModuleRef } from '@nestjs/core';
 import mongoose, { Connection } from 'mongoose';
 
 import { KINDAGOOSE_CONNECTION_NAME } from '../constants/kindagoose.constants';
 import { KindagooseModuleOptions } from '../interfaces/kindagoose-module-options.interface';
-import { MetadataAccessor } from '../providers/metadata-accessor.provider';
 import { getConnectionToken } from '../utils/get-connection-token';
 
 @Global()
@@ -27,14 +26,10 @@ export class KindagooseCoreModule implements OnApplicationShutdown {
         };
 
         return {
-            imports: [DiscoveryModule],
             module: KindagooseCoreModule,
-            providers: [
-                MetadataAccessor,
-                connectionProvider,
-                { provide: KINDAGOOSE_CONNECTION_NAME, useValue: connectionToken },
-            ],
-            exports: [MetadataAccessor, connectionProvider],
+            imports: [],
+            providers: [connectionProvider, { provide: KINDAGOOSE_CONNECTION_NAME, useValue: connectionToken }],
+            exports: [connectionProvider],
         };
     }
 

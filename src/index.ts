@@ -1,7 +1,10 @@
 export { PostEvents } from './constants/post-events';
 export { PreEvents } from './constants/pre-events';
+export { EventTrackerFor } from './decorators/event-tracker-for.decorator';
 export { InjectConnection } from './decorators/inject-connection.decorator';
 export { InjectModel } from './decorators/inject-model.decorator';
+export { Post } from './decorators/post.decorator';
+export { Pre } from './decorators/pre.decorator';
 export { AnyClass } from './interfaces/any-class.interface';
 export { KindagooseModuleOptions } from './interfaces/kindagoose-module-options.interface';
 export { ModelRegistrationOptions } from './interfaces/model-registration-options.interface';
