@@ -23,13 +23,12 @@ export class KindagooseModule {
 
     /**
      * Creates a global database connection with Nest's dependency injection.
-     * @param {string} uri - MongoDB Connection URI.
      * @param {KindagooseModuleAsyncOptions} options - Configuration for KindagooseModule and mongoose.
      */
-    static forRootAsync(uri: string, options: KindagooseModuleAsyncOptions) {
+    static forRootAsync(options: KindagooseModuleAsyncOptions) {
         return {
             module: KindagooseModule,
-            imports: [KindagooseCoreModule.forRootAsync(uri, options)],
+            imports: [KindagooseCoreModule.forRootAsync(options)],
         };
     }
 

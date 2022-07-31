@@ -10,5 +10,5 @@ import { KindagooseModuleOptions } from './kindagoose-module-options.interface';
 export interface KindagooseModuleAsyncOptions extends Pick<ModuleMetadata, 'imports'> {
     connectionName?: string;
     inject: any[];
-    useFactory: (...args: any[]) => Omit<KindagooseModuleOptions, 'connectionName'>;
+    useFactory: (...args: any[]) => Omit<KindagooseModuleOptions, 'connectionName'> & { uri: string };
 }

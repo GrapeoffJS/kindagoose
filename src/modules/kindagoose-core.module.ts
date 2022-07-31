@@ -33,7 +33,7 @@ export class KindagooseCoreModule implements OnApplicationShutdown {
         };
     }
 
-    static forRootAsync(uri: string, options: KindagooseModuleAsyncOptions): DynamicModule {
+    static forRootAsync(options: KindagooseModuleAsyncOptions): DynamicModule {
         const connectionToken = getConnectionToken(options.connectionName);
 
         const optionsProvider: Provider = {
@@ -45,7 +45,11 @@ export class KindagooseCoreModule implements OnApplicationShutdown {
         const connectionProvider: Provider = {
             provide: connectionToken,
             inject: [KINDAGOOSE_MODULE_OPTIONS],
-            async useFactory(mongooseConnectOptions: ConnectOptions) {
+            async useFactory(
+                mongooseConnectOptions: Omit<KindagooseModuleOptions, 'connectionName'> & { uri: string },
+            ) {
+                const { uri, ...connectOptions } = mongooseConnectOptions;
+
                 return await mongoose.createConnection(uri, mongooseConnectOptions).asPromise();
             },
         };
