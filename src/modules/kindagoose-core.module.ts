@@ -16,8 +16,8 @@ export class KindagooseCoreModule implements OnApplicationShutdown {
 
     static forRoot(uri: string, options: KindagooseModuleOptions): DynamicModule {
         const { connectionName, ...mongooseConnectOptions } = options;
-
         const connectionToken = getConnectionToken(connectionName);
+
         const connectionProvider: Provider = {
             provide: connectionToken,
             async useFactory() {
@@ -27,7 +27,6 @@ export class KindagooseCoreModule implements OnApplicationShutdown {
 
         return {
             module: KindagooseCoreModule,
-            imports: [],
             providers: [connectionProvider, { provide: KINDAGOOSE_CONNECTION_NAME, useValue: connectionToken }],
             exports: [connectionProvider],
         };

@@ -48,24 +48,20 @@ const modelFactory = (option: ModelRegistrationOptions) => {
         const mongooseSchema = buildSchema(option.schema);
 
         if (tracker) {
-            metadataScanner.scanFromPrototype(
-                tracker.instance,
-                Object.getPrototypeOf(tracker.instance),
-                propertyName => {
-                    const propertyPreMetadata: PreEvents[] =
-                        reflector.get('pre', tracker!.instance[propertyName]) || [];
-                    const propertyPostMetadata: PostEvents[] =
-                        reflector.get('post', tracker!.instance[propertyName]) || [];
+            const { instance } = tracker;
 
-                    for (const preEventName of propertyPreMetadata) {
-                        mongooseSchema.pre(preEventName, tracker!.instance[propertyName]);
-                    }
+            metadataScanner.scanFromPrototype(instance, Object.getPrototypeOf(instance), propertyName => {
+                const propertyPreMetadata: PreEvents[] = reflector.get('pre', instance[propertyName]) || [];
+                const propertyPostMetadata: PostEvents[] = reflector.get('post', instance[propertyName]) || [];
 
-                    for (const postEventName of propertyPostMetadata) {
-                        mongooseSchema.post(postEventName, tracker!.instance[propertyName]);
-                    }
-                },
-            );
+                for (const preEventName of propertyPreMetadata) {
+                    mongooseSchema.pre(preEventName, instance[propertyName].bind(instance));
+                }
+
+                for (const postEventName of propertyPostMetadata) {
+                    mongooseSchema.post(postEventName, instance[propertyName].bind(instance));
+                }
+            });
         }
 
         return addModelToTypegoose(connection.model(getName(option.schema), mongooseSchema), option.schema);
