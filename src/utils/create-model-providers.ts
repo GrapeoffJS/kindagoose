@@ -4,6 +4,7 @@ import { InstanceWrapper } from '@nestjs/core/injector/instance-wrapper';
 import { addModelToTypegoose, buildSchema, getName } from '@typegoose/typegoose';
 import { Connection } from 'mongoose';
 
+import { EVENT_TRACKER_FOR_KEY, POST_METADATA_KEY, PRE_METADATA_KEY } from '../constants/kindagoose.constants';
 import { PostEvents } from '../constants/post-events';
 import { PreEvents } from '../constants/pre-events';
 import { ModelRegistrationOptions } from '../interfaces/model-registration-options.interface';
@@ -37,7 +38,7 @@ const modelFactory = (option: ModelRegistrationOptions) => {
         let tracker: InstanceWrapper | null = null;
 
         for (const provider of providers) {
-            const trackerMetadata = reflector.get('tracker-for', provider.instance.constructor);
+            const trackerMetadata = reflector.get(EVENT_TRACKER_FOR_KEY, provider.instance.constructor);
 
             if (trackerMetadata === option.schema.name) {
                 tracker = provider;
@@ -51,8 +52,9 @@ const modelFactory = (option: ModelRegistrationOptions) => {
             const { instance } = tracker;
 
             metadataScanner.scanFromPrototype(instance, Object.getPrototypeOf(instance), propertyName => {
-                const propertyPreMetadata: PreEvents[] = reflector.get('pre', instance[propertyName]) || [];
-                const propertyPostMetadata: PostEvents[] = reflector.get('post', instance[propertyName]) || [];
+                const propertyPreMetadata: PreEvents[] = reflector.get(PRE_METADATA_KEY, instance[propertyName]) || [];
+                const propertyPostMetadata: PostEvents[] =
+                    reflector.get(POST_METADATA_KEY, instance[propertyName]) || [];
 
                 for (const preEventName of propertyPreMetadata) {
                     mongooseSchema.pre(preEventName, instance[propertyName].bind(instance));

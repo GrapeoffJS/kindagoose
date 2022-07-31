@@ -1,3 +1,6 @@
+/**
+ * Contains all event names for `pre` hook.
+ */
 export enum PreEvents {
     AGGREGATE = 'aggregate',
     COUNT = 'count',

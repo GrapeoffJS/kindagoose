@@ -1,3 +1,6 @@
+/**
+ * Contains all event names for `post` hook.
+ */
 export enum PostEvents {
     COUNT = 'count',
     FIND = 'find',
