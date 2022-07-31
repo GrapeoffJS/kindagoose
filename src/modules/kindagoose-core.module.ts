@@ -45,10 +45,8 @@ export class KindagooseCoreModule implements OnApplicationShutdown {
         const connectionProvider: Provider = {
             provide: connectionToken,
             inject: [KINDAGOOSE_MODULE_OPTIONS],
-            async useFactory(
-                mongooseConnectOptions: Omit<KindagooseModuleOptions, 'connectionName'> & { uri: string },
-            ) {
-                const { uri, ...connectOptions } = mongooseConnectOptions;
+            async useFactory(connectOptions: Omit<KindagooseModuleOptions, 'connectionName'> & { uri: string }) {
+                const { uri, ...mongooseConnectOptions } = connectOptions;
 
                 return await mongoose.createConnection(uri, mongooseConnectOptions).asPromise();
             },
