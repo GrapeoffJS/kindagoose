@@ -24,6 +24,7 @@
         "url": "https://github.com/GrapeoffJS/kindagoose/issues",
         "email": "grapeoff.official@gmail.com"
     },
+    "readme": "https://github.com/GrapeoffJS/kindagoose#README.md",
     "scripts": {
         "build": "rimraf dist && tsc -p tsconfig.json",
         "build:dev": "tsc --watch -p tsconfig.json",

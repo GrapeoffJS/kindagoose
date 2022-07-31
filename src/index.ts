@@ -6,6 +6,7 @@ export { InjectModel } from './decorators/inject-model.decorator';
 export { Post } from './decorators/post.decorator';
 export { Pre } from './decorators/pre.decorator';
 export { AnyClass } from './interfaces/any-class.interface';
+export { KindagooseModuleAsyncOptions } from './interfaces/kindagoose-module-async-options';
 export { KindagooseModuleOptions } from './interfaces/kindagoose-module-options.interface';
 export { ModelRegistrationOptions } from './interfaces/model-registration-options.interface';
 export { KindagooseModule } from './modules/kindagoose.module';

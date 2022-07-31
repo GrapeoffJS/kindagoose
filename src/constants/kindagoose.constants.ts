@@ -1,6 +1,7 @@
 // Common
 export const DEFAULT_CONNECTION_NAME = 'DefaultConnection';
 export const KINDAGOOSE_CONNECTION_NAME = 'KindagooseConnectionName';
+export const KINDAGOOSE_MODULE_OPTIONS = 'KindagooseModuleOptions';
 
 // Metadata keys
 export const EVENT_TRACKER_FOR_KEY = 'tracker-for';

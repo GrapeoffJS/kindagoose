@@ -1,8 +1,9 @@
 import { DynamicModule, Global, Inject, Module, OnApplicationShutdown, Provider } from '@nestjs/common';
 import { ModuleRef } from '@nestjs/core';
-import mongoose, { Connection } from 'mongoose';
+import mongoose, { Connection, ConnectOptions } from 'mongoose';
 
-import { KINDAGOOSE_CONNECTION_NAME } from '../constants/kindagoose.constants';
+import { KINDAGOOSE_CONNECTION_NAME, KINDAGOOSE_MODULE_OPTIONS } from '../constants/kindagoose.constants';
+import { KindagooseModuleAsyncOptions } from '../interfaces/kindagoose-module-async-options';
 import { KindagooseModuleOptions } from '../interfaces/kindagoose-module-options.interface';
 import { getConnectionToken } from '../utils/get-connection-token';
 
@@ -29,6 +30,39 @@ export class KindagooseCoreModule implements OnApplicationShutdown {
             module: KindagooseCoreModule,
             providers: [connectionProvider, { provide: KINDAGOOSE_CONNECTION_NAME, useValue: connectionToken }],
             exports: [connectionProvider],
+        };
+    }
+
+    static forRootAsync(uri: string, options: KindagooseModuleAsyncOptions): DynamicModule {
+        const connectionToken = getConnectionToken(options.connectionName);
+
+        const optionsProvider: Provider = {
+            provide: KINDAGOOSE_MODULE_OPTIONS,
+            inject: options.inject,
+            useFactory: options.useFactory,
+        };
+
+        const connectionProvider: Provider = {
+            provide: connectionToken,
+            inject: [KINDAGOOSE_MODULE_OPTIONS],
+            async useFactory(mongooseConnectOptions: ConnectOptions) {
+                return await mongoose.createConnection(uri, mongooseConnectOptions).asPromise();
+            },
+        };
+
+        return {
+            module: KindagooseCoreModule,
+            imports: options.imports,
+            providers: [
+                optionsProvider,
+                connectionProvider,
+                { provide: KINDAGOOSE_CONNECTION_NAME, useValue: connectionToken },
+            ],
+            exports: [
+                optionsProvider,
+                connectionProvider,
+                { provide: KINDAGOOSE_CONNECTION_NAME, useValue: connectionToken },
+            ],
         };
     }
 
