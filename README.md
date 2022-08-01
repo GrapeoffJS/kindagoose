@@ -80,4 +80,4 @@ export class UsersService {
 }
 ```
 
-Full documentation is available here: [grapeoffjs.github.io/kindagoose/](grapeoffjs.github.io/kindagoose/#/)
+Full documentation is available here: [grapeoffjs.github.io/kindagoose/](https://grapeoffjs.github.io/kindagoose/#/ru-ru/))
