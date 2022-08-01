@@ -44,7 +44,7 @@ To create database connection, you have to import `KindagooseModule` into the co
 and `forFeature()`.
 
 To connect using `forRoot()`, you only have to pass the connection string with the first argument, and,
-if it's needed, ConnectOptions ([`ConnectOptions`](https://mongodb.github.io/node-mongodb-native/2.2/api/MongoClient.html#connect)).
+if it's needed, ([`ConnectOptions`](https://mongodb.github.io/node-mongodb-native/2.2/api/MongoClient.html#connect)).
 
 Example with `forRoot()`:
 
@@ -83,7 +83,8 @@ But sometimes you may need to create `Connection URI` dynamically, while getting
 })
 export class AppModule {}
 ```
-If you don't want to use the long construction with the string interpolation, you can import `MongoDBConnectionURIBuilder` straight out of `kindagoose`!
+
+!> If you don't want to use the long construction with the string interpolation, you can import `MongoDBConnectionURIBuilder` straight out of `kindagoose`!
 
 ---
 
@@ -91,8 +92,8 @@ If you don't want to use the long construction with the string interpolation, yo
 
 # Schema creation
 
-Before starting to work with the database, it's necessary to create a schema and then a module based on it.
-The process of schema creation is beautifully illustrated in the [official documentation](https://typegoose.github.io/typegoose/docs/guides/quick-start-guide) `Typegoose`. For example, let's describe the schema of a user for the app `ToDo List`.
+Before starting to work with the database, it's necessary to create a schema and then a model based on it.
+The process of schema creation is beautifully illustrated in the [official documentation](https://typegoose.github.io/typegoose/docs/guides/quick-start-guide) `Typegoose`. For example, let's describe the schema of a user for the `ToDo List` app.
 
 ```typescript
 @modelOptions({schemaOptions: {collection: 'Users'}})
@@ -121,7 +122,7 @@ export class User extends TimeStamps {
 
 # Schema registration
 
-Now we have to register our schema, for `kindagoose` to turn it into a module, supporting dependency injection `NestJS`! To register a schema, you need to use the method `forFeature` of `KindagooseModule`:
+Now we have to register our schema, for `kindagoose` to turn it into a model, supporting dependency injection `NestJS`! To register a schema, you need to use the method `forFeature` of `KindagooseModule`:
 
 ```typescript
 @Module({
@@ -140,7 +141,7 @@ export class UsersModule {}
 
 #
 
-# The usage of the received modules
+# The usage of the created models
 
 Now when your database connection is settled and all of your schemas are registered, we can move onto the interesting part.
 Absolutely every provider that's in the range of the module where the schemas have been registered is able to gain access to your models. Let's look at what they need to do to get the access.
@@ -170,7 +171,7 @@ export class UsersService {
 }
 ```
 
-As you can see, to get the access to the module, a special decorator `@InjectModel()` is used, which accepts the `Typegoose` schema. To indicate the type of our model, a special `Utility Type` is used, which is imported straight out of `@typegoose/typegoose`.
+As you can see, to get the access to the model, a special decorator `@InjectModel()` is used, which accepts the `Typegoose` schema. To indicate the type of our model, a special `Utility Type` is used, which is imported straight out of `@typegoose/typegoose`.
 
 Then we use the service methods in our controller as usual:
 
