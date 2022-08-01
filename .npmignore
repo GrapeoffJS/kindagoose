@@ -4,3 +4,9 @@ src
 yarn.lock
 .eslintrc.js
 tsconfig.json
+docs
+.yalcignore
+.vscode
+.idea
+.editorconfig
+.gitignore
