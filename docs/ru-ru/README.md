@@ -71,7 +71,7 @@ export class AppModule {}
 ```typescript
 @Module({
   imports: [
-    ConfigModule.forRoot({cache: true, isGlobal: true}),
+    ConfigModule.forRoot({ cache: true, isGlobal: true }),
     KindagooseModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
@@ -299,7 +299,7 @@ export class EventsService {
 ```typescript
 @modelOptions({ schemaOptions: { collection: 'Users' } })
 export class User extends TimeStamps {
-  @prop({unique: true})
+  @prop({ unique: true })
   login: string;
 
   @prop()
