@@ -229,6 +229,7 @@ export class UsersController {
 
 ```typescript
 /* event.schema.ts */
+
 @modelOptions({ schemaOptions: { collection: 'Events' }})
 export class Event {
   @prop()
@@ -238,6 +239,7 @@ export class Event {
 
 ```typescript
 /* clicked-event.schema.ts */
+
 export class ClickedEvent extends Event {
   @prop()
   url: string;
