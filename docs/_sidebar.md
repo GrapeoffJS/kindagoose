@@ -4,7 +4,7 @@
 * **Working with models**
     * [Schema creation](/?id=schema-creation)
     * [Schema registration](/?id=schema-registration)
-    * [The usage of the created modules](/?id=the-usage-of-the-created-models)
+    * [The usage of the created models](/?id=the-usage-of-the-created-models)
 * **Advanced themes**
   * [Adding discriminators](/?id=adding-the-discriminators)
   * [Event tracking](/?id=event-tracking)
