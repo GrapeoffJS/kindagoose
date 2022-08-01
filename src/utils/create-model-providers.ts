@@ -1,13 +1,13 @@
 import { Provider } from '@nestjs/common';
 import { DiscoveryService, MetadataScanner, Reflector } from '@nestjs/core';
 
-import { ModelRegistrationOptions } from '../interfaces/model-registration-options.interface';
+import { SchemaRegistrationOptions } from '../interfaces/schema-registration-options.interface';
 import { discriminatorFactory } from './discriminator-factory';
 import { getConnectionToken } from './get-connection-token';
 import { getModelToken } from './get-model-token';
 import { modelFactory } from './model-factory';
 
-export const createModelProviders = (options: ModelRegistrationOptions[], connectionName?: string): Provider[] => {
+export const createModelProviders = (options: SchemaRegistrationOptions[], connectionName?: string): Provider[] => {
     const providers: Provider[] = [];
 
     for (const option of options) {

@@ -3,7 +3,7 @@ import { DiscoveryModule } from '@nestjs/core';
 
 import { KindagooseModuleAsyncOptions } from '../interfaces/kindagoose-module-async-options';
 import { KindagooseModuleOptions } from '../interfaces/kindagoose-module-options.interface';
-import { ModelRegistrationOptions } from '../interfaces/model-registration-options.interface';
+import { SchemaRegistrationOptions } from '../interfaces/schema-registration-options.interface';
 import { createModelProviders } from '../utils/create-model-providers';
 import { KindagooseCoreModule } from './kindagoose-core.module';
 
@@ -34,10 +34,10 @@ export class KindagooseModule {
 
     /***
      * Used for registration your models within a module.
-     * @param {ModelRegistrationOptions[]} options - Model registration options.
+     * @param {SchemaRegistrationOptions[]} options - Model registration options.
      * @param {string} connectionName - Mongoose connection name.
      */
-    static forFeature(options: ModelRegistrationOptions[], connectionName?: string): DynamicModule {
+    static forFeature(options: SchemaRegistrationOptions[], connectionName?: string): DynamicModule {
         const modelProviders = createModelProviders(options, connectionName);
 
         return {
