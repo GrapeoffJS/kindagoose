@@ -1,13 +1,13 @@
 * **Getting started**
-    * [Installation](/ru-ru/?id=Установка)
-    * [Connecting to Database](/ru-ru/?id=Подключение-к-базе-данных)
+    * [Installation](/?id=Installation)
+    * [Connecting to Database](/?id=connecting-to-database)
 * **Working with models**
-    * [Create schema](/ru-ru/?id=Создание-схемы)
-    * [Register schema](/ru-ru/?id=Регистрация-схемы)
-    * [Using models](/ru-ru/?id=Использование-полученных-моделей)
+    * [Schema creation](/?id=schema-creation)
+    * [Schema registration](/?id=schema-registration)
+    * [The usage of the received modules](/?id=the-usage-of-the-received-modules)
 * **Advanced themes**
-  * [Adding discriminators](/ru-ru/?id=Добавление-дискриминаторов)
-  * [Event tracking](/ru-ru/?id=Трекинг-событий)
+  * [Adding discriminators](/?id=adding-the-discriminators)
+  * [Event tracking](/?id=event-tracking)
 * **Conclusion**
-  * [Further package support](/ru-ru/?id=Дальнейшая-поддержка-пакета)
-  * [Special thanks](/ru-ru/?id=Особые-благодарности)
+  * [Further support of the package](/?id=further-support-of-the-package)
+  * [Special Thanks](/?id=special-thanks)

@@ -1,4 +1,4 @@
-# Установка
+# Installation
 
 To install `kindagoose`, you need to execute one of these simple commands:
 
@@ -38,7 +38,7 @@ $ yarn add kindagoose @typegoose/typegoose mongoose
 
 #
 
-# Database connection
+# Connecting to Database
 
 To create database connection, you have to import `KindagooseModule` into the core module of your app. Traditionally, `KindagooseModule` implements three standard methods: `forRoot()`, `forRootAsync()`
 and `forFeature()`.
@@ -89,15 +89,15 @@ If you don't want to use the long construction with the string interpolation, yo
 
 #
 
-# Scheme creation
+# Schema creation
 
-Before starting to work with the database, it's necessary to create a scheme and then a module based on it.
-The process of scheme creation is beautifully illustrated in the [official documentation](https://typegoose.github.io/typegoose/docs/guides/quick-start-guide) `Typegoose`. For example, let's describe the scheme of a user for the app `ToDo List`.
+Before starting to work with the database, it's necessary to create a schema and then a module based on it.
+The process of schema creation is beautifully illustrated in the [official documentation](https://typegoose.github.io/typegoose/docs/guides/quick-start-guide) `Typegoose`. For example, let's describe the schema of a user for the app `ToDo List`.
 
 ```typescript
 @modelOptions({schemaOptions: {collection: 'Users'}})
 export class User extends TimeStamps {
-  @prop({unique: true})
+  @prop({ unique: true })
   login: string;
 
   @prop()
@@ -119,10 +119,9 @@ export class User extends TimeStamps {
 
 #
 
-# Scheme registration
+# Schema registration
 
-Now we have to register our scheme, for `kindagoose` to turn it into a module, supporting dependency injection `NestJS`! To register a scheme, you need to use the method `forFeature`
-у `KindagooseModule`:
+Now we have to register our schema, for `kindagoose` to turn it into a module, supporting dependency injection `NestJS`! To register a schema, you need to use the method `forFeature` of `KindagooseModule`:
 
 ```typescript
 @Module({
@@ -137,14 +136,14 @@ Now we have to register our scheme, for `kindagoose` to turn it into a module, s
 export class UsersModule {}
 ```
 
-!> Notice that for every module schemes are registered separately. You can't register your scheme once and globally, you should use `forFeature` every time when your module asks for some kind of model. The signature of `forFeature` is also worth looking into — The method accepts an unlimited amount of `SchemaRegistrationOptions` type objects, hence why you shouldn't duplicate it's calls.
+!> Notice that for every module schemas are registered separately. You can't register your schema once and globally, you should use `forFeature` every time when your module asks for some kind of model. The signature of `forFeature` is also worth looking into — The method accepts an unlimited amount of `SchemaRegistrationOptions` type objects, hence why you shouldn't duplicate it's calls.
 
 #
 
 # The usage of the received modules
 
-Now when your database connection is settled and all of your schemes are registered, we can move onto the interesting part.
-Absolutely every provider that's in the range of the module where the schemes have been registered is able to gain access to your models. Let's look at what they need to do to get the access.
+Now when your database connection is settled and all of your schemas are registered, we can move onto the interesting part.
+Absolutely every provider that's in the range of the module where the schemas have been registered is able to gain access to your models. Let's look at what they need to do to get the access.
 
 ```typescript
 import { InjectModel } from "kindagoose";
@@ -171,7 +170,7 @@ export class UsersService {
 }
 ```
 
-As you can see, to get the access to the module, a special decorator `@InjectModel()` is used, which accepts the `Typegoose` scheme. To indicate the type of our model, a special `Utility Type` is used, which is imported straight out of `@typegoose/typegoose`.
+As you can see, to get the access to the module, a special decorator `@InjectModel()` is used, which accepts the `Typegoose` schema. To indicate the type of our model, a special `Utility Type` is used, which is imported straight out of `@typegoose/typegoose`.
 
 Then we use the service methods in our controller as usual:
 
@@ -209,7 +208,7 @@ Voilà!
 
 Sometimes there is a need to use the `mongoose` discriminators, let's look what we need to do to use them in the borders of `kindagoose`.
 
-Let's repeat the example out of the `mongoose` documentation — we'll create the `Event` scheme and a `ClickedEvent` discriminator:
+Let's repeat the example out of the `mongoose` documentation — we'll create the `Event` schema and a `ClickedEvent` discriminator:
 
 ```typescript
 /* event.schema.ts */
@@ -228,7 +227,7 @@ export class ClickedEvent extends Event {
 }
 ```
 
-As you see, nothing really changed for us. Now we need to register out scheme and discriminator:
+As you see, nothing really changed for us. Now we need to register out schema and discriminator:
 
 ```typescript
 @Module({
@@ -243,9 +242,9 @@ As you see, nothing really changed for us. Now we need to register out scheme an
 export class EventsModule {}
 ```
 
-To attach the discriminators to the scheme, we need to add the `discriminators` field into the object of the registration, and then enumerate the scheme discriminators inside of the object 
+To attach the discriminators to the schema, we need to add the `discriminators` field into the object of the registration, and then enumerate the schema discriminators inside of the object
 
-Now when the scheme and the discriminators are registered, we can gain access to them using the syntax of dependency injection:
+Now when the schema and the discriminators are registered, we can gain access to them using the syntax of dependency injection:
 
 ```typescript
 @Injectable()
@@ -268,7 +267,7 @@ export class EventsService {
 ```
 
 #
-# Event Tracking
+# Event tracking
 This last chapter is dedicated to basically the main reason of creation of this library.
 
 In `Typegoose` there is an ability to perform any type of job before or after any action. This concept inside of `Typegoose` is called `Hook`. [More about it](https://typegoose.github.io/typegoose/docs/api/decorators/hooks/).
@@ -276,12 +275,12 @@ In `Typegoose` there is an ability to perform any type of job before or after an
 Before `Kindagoose`The main package for work with `Typegoose` in `NestJS` was [`nestjs-typegoose`](https://github.com/kpfromer/nestjs-typegoose). This one time i needed to index my documents into `ElasticSearch` and hooks looked like a great way to fit this logic, while not clogging up the other services.
 But as it turned out, on `nestjs-typegoose` there's no comfortable instruments to work with hooks. Of course i could use a regular version of the `elasticsearch` package insted of wrapper for the `NestJS` as a crutch, or do the same with the`Service Locator` pattern, which is an anti-pattern in`NestJS` borders.
 
-Let's look at how it's implemented in `kindagoose`. First, let's make a scheme:
+Let's look at how it's implemented in `kindagoose`. First, let's make a schema:
 
 ```typescript
 @modelOptions({ schemaOptions: { collection: 'Users' } })
 export class User extends TimeStamps {
-  @prop({unique: true})
+  @prop({ unique: true })
   login: string;
 
   @prop()
@@ -303,7 +302,7 @@ export class User extends TimeStamps {
 
 Then let's suppose that you, just like me, want to your documents to be added into the `ElasticSearch` index after every save. And before saving we'll do something like `console.log()`.
 
-For that we need to create a file in which we'll put the event tracker. As a rule for naming the tracker files i submit this template: `[scheme-name].tracker.ts`.
+For that we need to create a file in which we'll put the event tracker. As a rule for naming the tracker files i submit this template: `[schema-name].tracker.ts`.
 
 ```typescript
 /* user.tracker.ts */
@@ -332,12 +331,12 @@ export class UserTracker {
 ```
 
 Let's dissect this code:
-1. `@EventTrackerFor` decorator flags the given class as an event tracker for the `User` scheme.
+1. `@EventTrackerFor` decorator flags the given class as an event tracker for the `User` schema.
 2. In the constructor we list out the necessary dependencies as usual,
 3. `@Pre` decorator flags the `log` method as a method that'll react to a `save` event and is executed before the save. All the possible events for the given decorator are located in the `PreEvents` enum.
 4. `@Post` decorator flags the `sendToElastic` method as a method that'll react to a `save` and is executed after the save. All the possible events for the given decorator are located in the `PostEvents` enum.
 
-To apply our tracker just add it into the massive of the providers module, where you have registered all of your schemes.
+To apply our tracker just add it into the massive of the providers module, where you have registered all of your schemas.
 
 ```typescript
 @Module({
@@ -365,3 +364,4 @@ It's unlikely that `Kindagoose` will be abandoned in the near future, that's why
 # Special Thanks
 1. [Fjodor Rybakov](https://github.com/fjodor-rybakov) for helping with the `NestJS` aspects that weren't described in the documentation at the time of this packages creation. [More about it](https://ru.stackoverflow.com/questions/1433421/%d0%9a%d0%b0%d0%ba-%d0%b4%d0%be%d1%81%d1%82%d0%b0%d1%82%d1%8c-%d0%bc%d0%b5%d1%82%d0%be%d0%b4-%d0%b8-%d0%bc%d0%b5%d1%82%d0%b0%d0%b4%d0%b0%d0%bd%d0%bd%d1%8b%d0%b5-%d0%b8%d0%b7-%d0%bf%d1%80%d0%be%d0%b2%d0%b0%d0%b9%d0%b4%d0%b5%d1%80%d0%b0-%d0%b2-nestjs)
 2. [Alexei](https://github.com/DeityLamb) for solving the problem with the access to the event tracker dependencies when transferring it's methods as a processor of the `Typegoose` hooks.
+3. [Artyom](https://github.com/BackOnTrackgithub) for translating this page from Russian to English!

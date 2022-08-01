@@ -7,4 +7,4 @@
 - Uses the latest versions of packages
 
 [GitHub](https://github.com/docsifyjs/docsify/)
-[Get started!]()
+[Get started!](/?id=Installation)
