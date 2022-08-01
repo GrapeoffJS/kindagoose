@@ -1,6 +1,6 @@
 # Kindagoose <small>1.1.3</small>
 
-> Интеграция Typegoose c NestJS!
+> Typegoose integration with NestJS
 
 - Less boilerplate-code than in `@nestjs/mongoose`
 - Solves the main problem of `nestjs-typegoose`
