@@ -59,7 +59,6 @@
         "@nestjs/core": "^9.0.0",
         "@typegoose/typegoose": "^9.11.0",
         "mongoose": "^6.5.0",
-        "reflect-metadata": "^0.1.13",
-        "rxjs": "^7.5.6"
+        "reflect-metadata": "^0.1.13"
     }
 }
