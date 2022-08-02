@@ -1,6 +1,6 @@
 # Adding the Discriminators
 
-Sometimes there is a need to use the `mongoose` discriminators, let's look what we need to do to use them in the borders of `kindagoose`.
+Sometimes there is a need to use the `mongoose` discriminators, let's look what we need to do to use them in the context of `kindagoose`.
 
 Let's repeat the example out of the `mongoose` documentation — we'll create the `Event` schema and a `ClickedEvent` discriminator:
 
@@ -38,7 +38,7 @@ As you see, nothing really changed for us. Now we need to register out schema an
 export class EventsModule {}
 ```
 
-To attach the discriminators to the schema, we need to add the `discriminators` field into the object of the registration, and then enumerate the schema discriminators inside of the object
+To attach the discriminators to the schema, we need to add the `discriminators` field into the registration object, and then enumerate the schema discriminators inside the object.
 
 Now when the schema and the discriminators are registered, we can gain access to them using the syntax of dependency injection:
 
