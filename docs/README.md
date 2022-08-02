@@ -15,10 +15,6 @@ $ npm i kindagoose @typegoose/typegoose mongoose
 ```shell
 $ yarn add kindagoose @typegoose/typegoose mongoose
 ```
-### Documentation
-
-[Full documentation is available here!](https://grapeoffjs.github.io/kindagoose)
-
 
 ### Usage
 
