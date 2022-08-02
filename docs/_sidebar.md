@@ -1,13 +1,14 @@
+* [Quick Start](/?id=Quick-start)
 * **Getting started**
-    * [Installation](/?id=Installation)
-    * [Connecting to Database](/?id=connecting-to-database)
+    * [Installation](/pages/installation.md)
+    * [Connecting to Database](/pages/connecting-to-database.md)
 * **Working with models**
-    * [Schema creation](/?id=schema-creation)
-    * [Schema registration](/?id=schema-registration)
-    * [The usage of the created models](/?id=the-usage-of-the-created-models)
+    * [Schema creation](/pages/schema-creation.md)
+    * [Schema registration](/pages/schema-registration.md)
+    * [The usage of the created models](/pages/model-usage.md)
 * **Advanced themes**
-  * [Adding discriminators](/?id=adding-the-discriminators)
-  * [Event tracking](/?id=event-tracking)
+  * [Adding discriminators](/pages/adding-discriminators.md)
+  * [Event tracking](/pages/tracking-events.md)
 * **Conclusion**
-  * [Further support of the package](/?id=further-support-of-the-package)
-  * [Special Thanks](/?id=special-thanks)
+  * [Further support of the package](/pages/further-support.md)
+  * [Special Thanks](/pages/special-thanks.md)

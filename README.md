@@ -1,23 +1,48 @@
-# Installation
+
+# Kindagoose
+
+[<img src=""></img>](https://www.npmjs.com/package/kindagoose)
+
+Best Typegoose integration for NestJS!
+
+[![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)](https://opensource.org/licenses/)
+[![Link to NPM](https://img.shields.io/badge/npm-kindagoose-red)](https://grapeoffjs.github.io/kindagoose)
+
+## Authors
+
+- [@Dmitriy Grape](https://github.com/GrapeoffJS)
+- [@BackOnTrack](https://github.com/BackOnTrackgithub)
+
+## Support
+
+For support, email me grapeoff.official@gmail.com or write an issue straight in kindagoose repository!
+
+
+## Installation
 
 To install `kindagoose`, you need to execute one of these simple commands:
 
 #### NPM
 
 ```shell
-$ npm i kindagoose
+$ npm i kindagoose @typegoose/typegoose mongoose
 ```
 
 #### Yarn
 
 ```shell
-$ yarn add kindagoose
+$ yarn add kindagoose @typegoose/typegoose mongoose
 ```
+## Documentation
 
-# Usage
+[Full documentation is available here!](https://grapeoffjs.github.io/kindagoose)
+
+
+## Usage
+
 #### Define a schema
 ```typescript
-@modelOptions({schemaOptions: {collection: 'Users'}})
+@modelOptions({ schemaOptions: { collection: 'Users' } })
 export class User extends TimeStamps {
   @prop({ unique: true })
   login: string;
@@ -53,7 +78,7 @@ export class User extends TimeStamps {
 export class UsersModule {}
 ```
 
-#### Use it wherever within a module
+#### Use it wherever within the module
 
 ```typescript
 import { InjectModel } from "kindagoose";
@@ -80,4 +105,6 @@ export class UsersService {
 }
 ```
 
-Full documentation is available here: [grapeoffjs.github.io/kindagoose/](https://grapeoffjs.github.io/kindagoose)
+## License
+
+[GPL 3.0](https://github.com/GrapeoffJS/kindagoose/blob/master/LICENSE)

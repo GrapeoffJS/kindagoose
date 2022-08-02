@@ -7,6 +7,10 @@
     <meta name="description" content="Typegoose integration with NestJS!">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+    <link
+            rel="stylesheet"
+            href="//cdn.jsdelivr.net/npm/docsify-dark-mode@latest/dist/style.min.css"
+    />
 </head>
 <body>
 <div id="app">Please wait...</div>
@@ -19,6 +23,33 @@
         loadSidebar: true,
         loadFooter: true,
         coverpage: ['/', '/ru-ru/'],
+        pagination: {
+            previousText: {
+                '/': 'Previous',
+                '/ru-ru': 'Предыдущая глава'
+            },
+            nextText: {
+                '/': 'Next',
+                '/ru-ru/pages': 'Следующая глава'
+            },
+            crossChapter: true,
+            crossChapterText: true,
+        },
+        search: {
+            maxAge: 86400000, // Expiration time, the default one day
+            paths: 'auto',
+            placeholder: {
+                '/ru-ru/': 'Что ищете?',
+                '/': 'Type to search'
+            },
+            noData: {
+                '/ru-ru/': 'Ничего не найдено',
+                '/': 'No Results'
+            },
+            depth: 2,
+            hideOtherSidebarContent: true,
+            pathNamespaces: ['/', '/ru-ru'],
+        },
     }
 </script>
 <!-- Docsify v4 -->
@@ -28,5 +59,7 @@
 <script src="//unpkg.com/prismjs/components/prism-bash.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/@alertbox/docsify-footer/dist/docsify-footer.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+<script src="//unpkg.com/docsify-pagination/dist/docsify-pagination.min.js"></script>
 </body>
 </html>
