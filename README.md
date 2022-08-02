@@ -1,7 +1,4 @@
-
 # Kindagoose
-
-[<img src=""></img>](https://www.npmjs.com/package/kindagoose)
 
 Best Typegoose integration for NestJS!
 
