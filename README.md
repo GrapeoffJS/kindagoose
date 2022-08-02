@@ -2,8 +2,8 @@
 
 Best Typegoose integration for NestJS!
 
-[![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)](https://opensource.org/licenses/)
-[![Link to NPM](https://img.shields.io/badge/npm-kindagoose-red)](https://grapeoffjs.github.io/kindagoose)
+[![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)](https://github.com/GrapeoffJS/kindagoose/blob/master/README.md)
+[![Link to NPM](https://img.shields.io/badge/npm-kindagoose-red)](https://www.npmjs.com/package/kindagoose)
 
 ## Authors
 
