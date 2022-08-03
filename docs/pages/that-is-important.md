@@ -10,6 +10,6 @@ For this very reason, `kindagoose` inside `peerDependencies` demands for the giv
 * `reflect-metadata`: `>=0.1.13`
 
 As you can see, for now these are one of the latest versions of the given packages at the time of the first half of 2022.
-Someone may notice that `kindagoose` actually works perfectly even with the older versions of these packages and may say that making the new versions to be up to date as a requirement is inexpedient. But i made this decision because i wanted to distance the obsolescence of my library as much as possible in case if i wouldn't be able to support it anymore.
+Someone may notice that `kindagoose` actually works perfectly even with the older versions of these packages and may say that making the new versions to be up to date as a requirement is inexpedient. But I made this decision because I wanted to distance the obsolescence of my library as much as possible in case if I wouldn't be able to support it anymore.
 
 Out of all of this you can also make a conclusion that it's better to use `Kindagoose` in the newer projects, then trying to renovate your legacy-code on it.
