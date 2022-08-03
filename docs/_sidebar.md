@@ -1,4 +1,5 @@
 * [Quick Start](/?id=Quick-start)
+* [That's important!](/pages/that-is-important.md)
 * **Getting started**
     * [Installation](/pages/installation.md)
     * [Connecting to Database](/pages/connecting-to-database.md)

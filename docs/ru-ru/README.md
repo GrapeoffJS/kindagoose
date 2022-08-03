@@ -53,7 +53,7 @@ export class User extends TimeStamps {
     ]),
   ],
   controllers: [],
-  providers: [],
+  providers: [UsersService],
 })
 export class UsersModule {}
 ```
