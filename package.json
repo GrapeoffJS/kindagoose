@@ -30,6 +30,20 @@
         "build:dev": "tsc --watch -p tsconfig.json",
         "prepare": "yarn build"
     },
+    "funding": [
+        {
+            "type": "patreon",
+            "url": "https://patreon.com/user?u=77795275"
+        },
+        {
+            "type": "individual",
+            "url": "https://donatty.com/grapeoff"
+        },
+        {
+            "type": "individual",
+            "url": "https://donate.stream/donate_62eaa193a0e75"
+        }
+    ],
     "license": "GPL-3.0-only",
     "private": false,
     "devDependencies": {
