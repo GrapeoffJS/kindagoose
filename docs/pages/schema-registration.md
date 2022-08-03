@@ -9,7 +9,7 @@ Now we have to register our schema, for `kindagoose` to turn it into a model, su
       { schema: User },
     ]),
   ],
-  controllers: [],
+  controllers: [UsersController],
   providers: [UsersService],
 })
 export class UsersModule {}

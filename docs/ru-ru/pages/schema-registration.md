@@ -11,7 +11,7 @@
       { schema: User },
     ]),
   ],
-  controllers: [],
+  controllers: [UsersController],
   providers: [UsersService],
 })
 export class UsersModule {}
