@@ -6,5 +6,5 @@
 - Решает главную проблему `nestjs-typegoose`
 - Использует последние версии пакетов
 
-[GitHub](https://github.com/docsifyjs/docsify/)
+[GitHub](https://github.com/GrapeoffJS/kindagoose)
 [Приступить к работе!](/ru-ru/?id=Быстрый-старт)
