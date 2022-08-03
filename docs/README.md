@@ -51,7 +51,7 @@ Register your schema like this:
     ]),
   ],
   controllers: [],
-  providers: [],
+  providers: [UsersService],
 })
 export class UsersModule {}
 ```

@@ -3,8 +3,8 @@ This last chapter is dedicated to basically the main reason of creation of this 
 
 In `Typegoose` there is an ability to perform any type of job before or after any action. This concept inside of `Typegoose` is called `Hook`. [More about it](https://typegoose.github.io/typegoose/docs/api/decorators/hooks/).
 
-Before `Kindagoose`The main package for work with `Typegoose` in `NestJS` was [`nestjs-typegoose`](https://github.com/kpfromer/nestjs-typegoose). This one time i needed to index my documents into `ElasticSearch` and hooks looked like a great way to fit this logic, while not clogging up the other services.
-But as it turned out, on `nestjs-typegoose` there's no comfortable instruments to work with hooks. Of course i could use a regular version of the `elasticsearch` package insted of wrapper for the `NestJS` as a crutch, or do the same with the`Service Locator` pattern, which is an anti-pattern in`NestJS` borders.
+Before `Kindagoose`The main package for work with `Typegoose` in `NestJS` was [`nestjs-typegoose`](https://github.com/kpfromer/nestjs-typegoose). This one time I needed to index my documents into `ElasticSearch` and hooks looked like a great way to fit this logic, while not clogging up the other services.
+But as it turned out, on `nestjs-typegoose` there's no comfortable instruments to work with hooks. Of course I could use a regular version of the `elasticsearch` package instead of wrapper for the `NestJS` as a crutch, or do the same with the`Service Locator` pattern, which is an anti-pattern in`NestJS` borders.
 
 Let's look at how it's implemented in `kindagoose`. First, let's make a schema:
 
@@ -33,7 +33,7 @@ export class User extends TimeStamps {
 
 Then let's suppose that you, just like me, want to your documents to be added into the `ElasticSearch` index after every save. And before saving we'll do something like `console.log()`.
 
-For that we need to create a file in which we'll put the event tracker. As a rule for naming the tracker files i submit this template: `[schema-name].tracker.ts`.
+For that we need to create a file in which we'll put the event tracker. As a rule for naming the tracker files I submit this template: `[schema-name].tracker.ts`.
 
 ```typescript
 /* user.tracker.ts */

@@ -1,6 +1,6 @@
 # The usage of the created models
 
-Now when your database connection is settled and all of your schemas are registered, we can move onto the interesting part.
+Now when your database connection is established and all of your schemas are registered, we can move onto the interesting part.
 Absolutely every provider that's in the range of the module where the schemas have been registered is able to gain access to your models. Let's look at what they need to do to get the access.
 
 ```typescript

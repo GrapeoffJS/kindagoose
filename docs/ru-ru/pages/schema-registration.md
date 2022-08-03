@@ -12,7 +12,7 @@
     ]),
   ],
   controllers: [],
-  providers: [],
+  providers: [UsersService],
 })
 export class UsersModule {}
 ```
