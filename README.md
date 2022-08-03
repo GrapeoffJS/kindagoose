@@ -1,6 +1,6 @@
 # Kindagoose
 
-Best Typegoose integration for NestJS!
+Fresh NestJS wrapper for Typegoose that solves the main drawback of [nestjs-typegoose](https://github.com/kpfromer/nestjs-typegoose)
 
 [![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)](https://github.com/GrapeoffJS/kindagoose/blob/master/README.md)
 [![Link to NPM](https://img.shields.io/badge/npm-kindagoose-red)](https://www.npmjs.com/package/kindagoose)
