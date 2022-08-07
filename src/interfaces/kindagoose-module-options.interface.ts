@@ -5,4 +5,6 @@ import { ConnectOptions } from 'mongoose';
  */
 export interface KindagooseModuleOptions extends ConnectOptions {
     connectionName?: string;
+    retryAttempts?: number;
+    retryDelay?: number;
 }

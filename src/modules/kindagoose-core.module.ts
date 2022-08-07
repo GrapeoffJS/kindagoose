@@ -1,11 +1,13 @@
 import { DynamicModule, Global, Inject, Module, OnApplicationShutdown, Provider } from '@nestjs/common';
 import { ModuleRef } from '@nestjs/core';
-import mongoose, { Connection, ConnectOptions } from 'mongoose';
+import mongoose, { Connection } from 'mongoose';
+import { defer, lastValueFrom } from 'rxjs';
 
 import { KINDAGOOSE_CONNECTION_NAME, KINDAGOOSE_MODULE_OPTIONS } from '../constants/kindagoose.constants';
 import { KindagooseModuleAsyncOptions } from '../interfaces/kindagoose-module-async-options';
 import { KindagooseModuleOptions } from '../interfaces/kindagoose-module-options.interface';
 import { getConnectionToken } from '../utils/get-connection-token';
+import { handleRetry } from '../utils/handle-retry';
 
 @Global()
 @Module({})
@@ -16,13 +18,17 @@ export class KindagooseCoreModule implements OnApplicationShutdown {
     ) {}
 
     static forRoot(uri: string, options: KindagooseModuleOptions): DynamicModule {
-        const { connectionName, ...mongooseConnectOptions } = options;
+        const { retryAttempts, retryDelay, connectionName, ...mongooseConnectOptions } = options;
         const connectionToken = getConnectionToken(connectionName);
 
         const connectionProvider: Provider = {
             provide: connectionToken,
             async useFactory() {
-                return await mongoose.createConnection(uri, mongooseConnectOptions).asPromise();
+                return await lastValueFrom(
+                    defer(async () => await mongoose.createConnection(uri, mongooseConnectOptions).asPromise()).pipe(
+                        handleRetry(retryAttempts, retryDelay),
+                    ),
+                );
             },
         };
 
@@ -46,9 +52,13 @@ export class KindagooseCoreModule implements OnApplicationShutdown {
             provide: connectionToken,
             inject: [KINDAGOOSE_MODULE_OPTIONS],
             async useFactory(connectOptions: Omit<KindagooseModuleOptions, 'connectionName'> & { uri: string }) {
-                const { uri, ...mongooseConnectOptions } = connectOptions;
+                const { uri, retryDelay, retryAttempts, ...mongooseConnectOptions } = connectOptions;
 
-                return await mongoose.createConnection(uri, mongooseConnectOptions).asPromise();
+                return await lastValueFrom(
+                    defer(async () => await mongoose.createConnection(uri, mongooseConnectOptions).asPromise()).pipe(
+                        handleRetry(retryAttempts, retryDelay),
+                    ),
+                );
             },
         };
 
