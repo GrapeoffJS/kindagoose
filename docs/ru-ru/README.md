@@ -49,7 +49,7 @@ export class User extends TimeStamps {
 @Module({
   imports: [
     KindagooseModule.forFeature([
-      { schema: User },
+      User,
     ]),
   ],
   controllers: [],
