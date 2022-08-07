@@ -8,7 +8,7 @@
 @Module({
   imports: [
     KindagooseModule.forFeature([
-      { schema: User },
+      User
     ]),
   ],
   controllers: [UsersController],

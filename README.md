@@ -1,6 +1,7 @@
 # Kindagoose
 
-Fresh NestJS wrapper for Typegoose that solves the main drawback of [nestjs-typegoose](https://github.com/kpfromer/nestjs-typegoose)
+Fresh NestJS wrapper for Typegoose that solves the main drawback
+of [nestjs-typegoose](https://github.com/kpfromer/nestjs-typegoose)
 
 [![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)](https://github.com/GrapeoffJS/kindagoose/blob/master/README.md)
 [![Link to NPM](https://img.shields.io/badge/npm-kindagoose-red)](https://www.npmjs.com/package/kindagoose)
@@ -13,7 +14,6 @@ Fresh NestJS wrapper for Typegoose that solves the main drawback of [nestjs-type
 ## Support
 
 For support, email me grapeoff.official@gmail.com or write an issue straight in kindagoose repository!
-
 
 ## Installation
 
@@ -30,14 +30,15 @@ $ npm i kindagoose @typegoose/typegoose mongoose
 ```shell
 $ yarn add kindagoose @typegoose/typegoose mongoose
 ```
+
 ## Documentation
 
 [Full documentation is available here!](https://grapeoffjs.github.io/kindagoose)
 
-
 ## Usage
 
 #### Define a schema
+
 ```typescript
 @modelOptions({ schemaOptions: { collection: 'Users' } })
 export class User extends TimeStamps {
@@ -62,11 +63,12 @@ export class User extends TimeStamps {
 ```
 
 #### Register your schema like this
+
 ```typescript
 @Module({
   imports: [
     KindagooseModule.forFeature([
-      { schema: User },
+      User,
     ]),
   ],
   controllers: [],
@@ -84,8 +86,8 @@ import { ReturnModelType } from "@typegoose/typegoose";
 @Injectable()
 export class UsersService {
   constructor(
-      @InjectModel(User)
-      private readonly userModel: ReturnModelType<typeof User>,
+          @InjectModel(User)
+          private readonly userModel: ReturnModelType<typeof User>,
   ) {}
 
   async create(createUserDto: CreateUserDto) {
