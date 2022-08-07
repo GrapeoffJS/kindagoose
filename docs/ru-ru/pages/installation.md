@@ -21,9 +21,10 @@ $ yarn add kindagoose
 * `@typegoose/typegoose`: `>=9.11.0`
 * `mongoose`: `>=6.5.0`
 * `reflect-metadata`: `>=0.1.13`
+* `rxjs`: `^7.5.6 || < 9.0.0`
 
 Итого, команда установки будет выглядеть так (предполагается, что в вашем `NestJS` проекте уже установлены пакеты
-`@nestjs/common`, `@nestjs/core` и `reflect-metadata` последних версий):
+`@nestjs/common`, `@nestjs/core`, `rxjs` и `reflect-metadata` последних версий):
 
 #### NPM
 

@@ -21,8 +21,9 @@ However, for the module to work you also need the following packages:
 * `@typegoose/typegoose`: `>=9.11.0`
 * `mongoose`: `>=6.5.0`
 * `reflect-metadata`: `>=0.1.13`
+* `rxjs`: `^7.5.6 || < 9.0.0`
 
-In total, the install command should look like this (It is assumed you have already installed the
+In total, the installation command should look like this (It is assumed you have already installed the
 packages `@nestjs/common`, `@nestjs/core` and `reflect-metadata` of the latest versions in your `NestJS` project):
 
 #### NPM
