@@ -37,6 +37,10 @@ export class MongoDBConnectionURIBuilder {
         return this;
     }
 
+    /**
+     *
+     * @param {string} params - string like `param1=value1&param2=value2`
+     */
     public setConnectionParams(params: string) {
         this.connectionParams = params;
         return this;
