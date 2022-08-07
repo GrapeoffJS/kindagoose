@@ -61,6 +61,7 @@ export class UsersModule {}
 Используй полученную модель в любом месте модуля:
 
 ```typescript
+import { Injectable } from "@nestjs/common";
 import { InjectModel } from "kindagoose";
 import { ReturnModelType } from "@typegoose/typegoose";
 

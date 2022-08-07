@@ -19,6 +19,7 @@ $ yarn add kindagoose @typegoose/typegoose mongoose
 ### Usage
 
 Define a schema:
+
 ```typescript
 @modelOptions({ schemaOptions: { collection: 'Users' } })
 export class User extends TimeStamps {
@@ -43,11 +44,12 @@ export class User extends TimeStamps {
 ```
 
 Register your schema like this:
+
 ```typescript
 @Module({
   imports: [
     KindagooseModule.forFeature([
-      { schema: User },
+      User,
     ]),
   ],
   controllers: [],
@@ -59,14 +61,15 @@ export class UsersModule {}
 Use it wherever within the module:
 
 ```typescript
+import { Injectable } from "@nestjs/common";
 import { InjectModel } from "kindagoose";
 import { ReturnModelType } from "@typegoose/typegoose";
 
 @Injectable()
 export class UsersService {
   constructor(
-      @InjectModel(User)
-      private readonly userModel: ReturnModelType<typeof User>,
+          @InjectModel(User)
+          private readonly userModel: ReturnModelType<typeof User>,
   ) {}
 
   async create(createUserDto: CreateUserDto) {
