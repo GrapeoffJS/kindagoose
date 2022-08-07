@@ -7,20 +7,20 @@ import { getConnectionToken } from './get-connection-token';
 import { getModelToken } from './get-model-token';
 import { modelFactory } from './model-factory';
 
-export const createModelProviders = (options: SchemaRegistrationOptions[], connectionName?: string): Provider[] => {
+export const createModelProviders = (schemas: SchemaRegistrationOptions[], connectionName?: string): Provider[] => {
     const providers: Provider[] = [];
 
-    for (const option of options) {
-        const modelToken = getModelToken(option.schema.name, connectionName);
+    for (const schema of schemas) {
+        const modelToken = getModelToken(schema.schema.name, connectionName);
 
         providers.push({
             provide: modelToken,
             inject: [getConnectionToken(connectionName), DiscoveryService, Reflector, MetadataScanner],
-            useFactory: modelFactory(option.schema),
+            useFactory: modelFactory(schema.schema),
         });
 
-        if (option.discriminators) {
-            for (const discriminator of option.discriminators) {
+        if (schema.discriminators) {
+            for (const discriminator of schema.discriminators) {
                 providers.push({
                     provide: getModelToken(discriminator.name, connectionName),
                     inject: [

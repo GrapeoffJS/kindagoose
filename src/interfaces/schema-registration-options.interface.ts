@@ -6,5 +6,5 @@ import { AnyClass } from './any-class.interface';
  */
 export interface SchemaRegistrationOptions {
     schema: AnyClass;
-    discriminators?: AnyClass[];
+    discriminators?: AnyClass[] | undefined;
 }
