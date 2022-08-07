@@ -1,10 +1,11 @@
 # Connecting to Database
 
-To create database connection, you have to import `KindagooseModule` into the core module of your app. Traditionally, `KindagooseModule` implements three standard methods: `forRoot()`, `forRootAsync()`
+To create database connection, you have to import `KindagooseModule` into the core module of your app.
+Traditionally, `KindagooseModule` implements three standard methods: `forRoot()`, `forRootAsync()`
 and `forFeature()`.
 
-To connect using `forRoot()`, you only have to pass the connection string with the first argument, and,
-if it's needed, [`ConnectOptions`](https://mongodb.github.io/node-mongodb-native/2.2/api/MongoClient.html#connect).
+To connect using `forRoot()`, you only have to pass the connection string with the first argument, and, if it's
+needed, [`ConnectOptions`](https://mongodb.github.io/node-mongodb-native/2.2/api/MongoClient.html#connect).
 
 Example with `forRoot()`:
 
@@ -22,7 +23,8 @@ Example with `forRoot()`:
 export class AppModule {}
 ```
 
-But sometimes you may need to create `Connection URI` dynamically, while getting values from the variables of the environment. In this case, you should use `forRootAsync()`:
+But sometimes you may need to create `Connection URI` dynamically, while getting values from the variables of the
+environment. In this case, you should use `forRootAsync()`:
 
 ```typescript
 @Module({
@@ -44,4 +46,5 @@ But sometimes you may need to create `Connection URI` dynamically, while getting
 export class AppModule {}
 ```
 
-!> If you don't want to use the long construction with the string interpolation, you can import `MongoDBConnectionURIBuilder` straight out of `kindagoose`!
+!> If you don't want to use the long construction with the string interpolation, you can
+import `MongoDBConnectionURIBuilder` straight out of `kindagoose`!

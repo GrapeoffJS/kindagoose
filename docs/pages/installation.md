@@ -22,7 +22,8 @@ However, for the module to work you also need the following packages:
 * `mongoose`: `>=6.5.0`
 * `reflect-metadata`: `>=0.1.13`
 
-In total, the install command should look like this (It is assumed you have already installed the packages `@nestjs/common`, `@nestjs/core` and `reflect-metadata` of the latest versions in your `NestJS` project):
+In total, the install command should look like this (It is assumed you have already installed the
+packages `@nestjs/common`, `@nestjs/core` and `reflect-metadata` of the latest versions in your `NestJS` project):
 
 #### NPM
 

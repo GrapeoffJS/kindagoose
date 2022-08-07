@@ -1,7 +1,8 @@
 # The usage of the created models
 
-Now when your database connection is established and all of your schemas are registered, we can move onto the interesting part.
-Absolutely every provider that's in the range of the module where the schemas have been registered is able to gain access to your models. Let's look at what they need to do to get the access.
+Now when your database connection is established and all of your schemas are registered, we can move onto the
+interesting part. Absolutely every provider that's in the range of the module where the schemas have been registered is
+able to gain access to your models. Let's look at what they need to do to get the access.
 
 ```typescript
 import { InjectModel } from "kindagoose";
@@ -10,8 +11,8 @@ import { ReturnModelType } from "@typegoose/typegoose";
 @Injectable()
 export class UsersService {
   constructor(
-      @InjectModel(User)
-      private readonly userModel: ReturnModelType<typeof User>,
+          @InjectModel(User)
+          private readonly userModel: ReturnModelType<typeof User>,
   ) {}
 
   async create(createUserDto: CreateUserDto) {
@@ -28,7 +29,9 @@ export class UsersService {
 }
 ```
 
-As you can see, to get the access to the model, a special decorator `@InjectModel()` is used, which accepts the `Typegoose` schema. To indicate the type of our model, a special `Utility Type` is used, which is imported straight out of `@typegoose/typegoose`.
+As you can see, to get the access to the model, a special decorator `@InjectModel()` is used, which accepts
+the `Typegoose` schema. To indicate the type of our model, a special `Utility Type` is used, which is imported straight
+out of `@typegoose/typegoose`.
 
 Then we use the service methods in our controller as usual:
 
@@ -36,7 +39,7 @@ Then we use the service methods in our controller as usual:
 @Controller()
 export class UsersController {
   constructor(
-      private readonly usersService: UsersService
+          private readonly usersService: UsersService
   ) {}
 
   @Post()
