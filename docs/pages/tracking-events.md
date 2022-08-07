@@ -8,7 +8,7 @@ of `Typegoose` is called `Hook`. [More about it](https://typegoose.github.io/typ
 Before `Kindagoose`The main package for work with `Typegoose` in `NestJS`
 was [`nestjs-typegoose`](https://github.com/kpfromer/nestjs-typegoose). This one time I needed to index my documents
 into `ElasticSearch` and hooks looked like a great way to fit this logic, while not clogging up the other services. But
-as it turned out, on `nestjs-typegoose` there's no comfortable instruments to work with hooks. Of course I could use a
+as it turned out, on `nestjs-typegoose` there's no comfortable instruments to work with hooks. Of course, I could use a
 regular version of the `elasticsearch` package instead of wrapper for the `NestJS` as a crutch, or do the same with
 the`Service Locator` pattern, which is an anti-pattern in`NestJS` borders.
 

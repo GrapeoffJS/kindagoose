@@ -10,7 +10,7 @@ was [`nestjs-typegoose`](https://github.com/kpfromer/nestjs-typegoose). This one
 into `ElasticSearch` and hooks looked like a great way to fit this logic, while not clogging up the other services. But
 as it turned out, on `nestjs-typegoose` there's no comfortable instruments to work with hooks. Of course, I could use a
 regular version of the `elasticsearch` package instead of wrapper for the `NestJS` as a crutch, or do the same with
-the`Service Locator` pattern, which is an antipattern in `NestJS` context.
+the`Service Locator` pattern, which is an anti-pattern in `NestJS` context.
 
 Let's look at how it's implemented in `kindagoose`. First, let's make a schema:
 
