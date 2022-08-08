@@ -1,4 +1,4 @@
-# Kindagoose <small>1.1.3</small>
+# Kindagoose <small>1.2.2</small>
 
 > Typegoose integration with NestJS
 
