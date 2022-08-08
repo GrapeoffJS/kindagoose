@@ -18,7 +18,7 @@
     },
     "author": "Dmitriy Grape <grapeoff.official@gmail.com>",
     "engines": {
-        "node": ">=16.16.0"
+        "node": ">=12.9.0"
     },
     "bugs": {
         "url": "https://github.com/GrapeoffJS/kindagoose/issues",
