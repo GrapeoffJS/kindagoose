@@ -75,7 +75,7 @@ Let's dissect this code:
 2. In the constructor we list out the necessary dependencies as usual,
 3. `@Pre` decorator flags the `log` method as a method that'll react to a `save` event and is executed before the save.
    All the possible events for the given decorator are located in the `PreEvents` enum.
-4. `@Post` decorator flags the `sendToElastic` method as a method that'll react to a `save` and is executed after the
+4. `@Post` decorator flags the `sendToElastic` method as a method that'll react to a `save` event and is executed after the
    save. All the possible events for the given decorator are located in the `PostEvents` enum.
 
 !> 1. It is possible to make only one event tracker for each scheme. Kindagoose will apply the very first tracker that
