@@ -88,7 +88,7 @@ To apply our tracker just add it into array of providers.
   imports: [
     ElasticSearchModule.forRoot(/ * any configuration * /),
     KindagooseModule.forFeature([
-      { schema: User },
+      User,
     ]),
   ],
   controllers: [],
