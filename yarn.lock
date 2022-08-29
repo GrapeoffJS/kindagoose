@@ -110,9 +110,9 @@
     node-fetch "^2.6.1"
 
 "@typegoose/typegoose@^9.11.0":
-  version "9.11.0"
-  resolved "https://registry.yarnpkg.com/@typegoose/typegoose/-/typegoose-9.11.0.tgz#336dafadf5483f07491fa7d3c3cdf4a096a4dd4a"
-  integrity sha512-abAeJ3pxWVldG0WEV00vs7UyORSLUrFigRDCa71P1GTPRpAzfF28VwYdnDWq+L5b34GYAV7sQTU80ViAX2V18w==
+  version "9.11.2"
+  resolved "https://registry.yarnpkg.com/@typegoose/typegoose/-/typegoose-9.11.2.tgz#7f1e7083c0e415fd8b055669d6fcdd2228012633"
+  integrity sha512-ocszTQDHUtM7F+LxGMklFPOYEZ5Dem/xJ5e98wD6HNhltSuG1UWhHK3YJBJLmjxVK3n574egp32efuTlnTcFGw==
   dependencies:
     lodash "^4.17.20"
     loglevel "^1.8.0"
