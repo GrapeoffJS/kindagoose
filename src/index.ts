@@ -1,5 +1,4 @@
-export { PostEvents } from './constants/post-events';
-export { PreEvents } from './constants/pre-events';
+export { Hook } from './constants/hook';
 export { EventTrackerFor } from './decorators/event-tracker-for.decorator';
 export { InjectConnection } from './decorators/inject-connection.decorator';
 export { InjectModel } from './decorators/inject-model.decorator';

@@ -4,7 +4,7 @@ import { AnyClass } from '../interfaces/any-class.interface';
 import { getModelToken } from '../utils/get-model-token';
 
 /**
- * Gives access to registered model.
+ * Gives access to a registered model.
  * @param {AnyClass} schema - Typegoose schema.
  * @param connectionName - Name of mongoose connection.
  * @constructor

@@ -3,9 +3,8 @@ import { InstanceWrapper } from '@nestjs/core/injector/instance-wrapper';
 import { addModelToTypegoose, buildSchema, getName } from '@typegoose/typegoose';
 import { Connection } from 'mongoose';
 
+import { Hook } from '../constants/hook';
 import { EVENT_TRACKER_FOR_KEY, POST_METADATA_KEY, PRE_METADATA_KEY } from '../constants/kindagoose.constants';
-import { PostEvents } from '../constants/post-events';
-import { PreEvents } from '../constants/pre-events';
 import { AnyClass } from '../interfaces/any-class.interface';
 
 export const modelFactory = (schema: AnyClass) => {
@@ -33,9 +32,8 @@ export const modelFactory = (schema: AnyClass) => {
             const { instance } = tracker;
 
             metadataScanner.scanFromPrototype(instance, Object.getPrototypeOf(instance), propertyName => {
-                const propertyPreMetadata: PreEvents[] = reflector.get(PRE_METADATA_KEY, instance[propertyName]) || [];
-                const propertyPostMetadata: PostEvents[] =
-                    reflector.get(POST_METADATA_KEY, instance[propertyName]) || [];
+                const propertyPreMetadata: Hook[] = reflector.get(PRE_METADATA_KEY, instance[propertyName]) || [];
+                const propertyPostMetadata: Hook[] = reflector.get(POST_METADATA_KEY, instance[propertyName]) || [];
 
                 for (const preEventName of propertyPreMetadata) {
                     mongooseSchema.pre(preEventName, instance[propertyName].bind(instance));
