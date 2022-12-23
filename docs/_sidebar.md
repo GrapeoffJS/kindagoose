@@ -9,7 +9,7 @@
     * [The usage of the created models](/pages/model-usage.md)
 * **Advanced themes**
   * [Adding discriminators](/pages/adding-discriminators.md)
-  * [Event tracking](/pages/tracking-events.md)
+  * [Event tracking](/pages/event-tracking.md)
 * **Conclusion**
   * [Further support of the package](/pages/further-support.md)
   * [Special Thanks](/pages/special-thanks.md)

@@ -11,7 +11,7 @@
   * [Использование полученных моделей](/ru-ru/pages/model-usage.md)
 * **Продвинутые темы**
   * [Добавление дискриминаторов](/ru-ru/pages/adding-discriminators.md)
-  * [Трекинг событий](/ru-ru/pages/tracking-events.md)
+  * [Трекинг событий](/ru-ru/pages/event-tracking.md)
 * **Заключение**
   * [Дальнейшая поддержка пакета](/ru-ru/pages/further-support.md)
   * [Особые благодарности](/ru-ru/pages/special-thanks.md)
