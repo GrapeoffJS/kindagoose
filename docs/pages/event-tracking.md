@@ -74,9 +74,8 @@ Let's dissect this code:
 1. `@EventTrackerFor` decorator flags the given class as an event tracker for the `User` schema.
 2. In the constructor we list out the necessary dependencies as usual.
 3. `@Pre` decorator flags the `log` method as a method that'll react to a `save` event and is executed before the save.
-   All the possible events for the given decorator are located in the `PreEvents` enum.
 4. `@Post` decorator flags the `sendToElastic` method as a method that'll react to a `save` and is executed after the
-   save. All the possible events for the given decorator are located in the `PostEvents` enum.
+   save.
 
 To apply our tracker just add it into the array of the providers' module, where you have registered all of your schemas.
 

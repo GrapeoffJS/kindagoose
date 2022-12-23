@@ -2,7 +2,7 @@
 * [That's important!](/pages/that-is-important.md)
 * **Getting started**
     * [Installation](/pages/installation.md)
-    * [Connecting to Database](/pages/connecting-to-database.md)
+    * [Connecting to the Database](/pages/connecting-to-database.md)
 * **Working with models**
     * [Schema creation](/pages/schema-creation.md)
     * [Schema registration](/pages/schema-registration.md)
