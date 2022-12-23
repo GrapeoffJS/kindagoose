@@ -43,7 +43,7 @@ export class EventsModule {}
 To attach the discriminators to the schema, we need to add the `discriminators` field into the registration object, and
 then enumerate the schema discriminators inside the object.
 
-Now when the schema and the discriminators are registered, we can gain access to them using the syntax of dependency
+Now, when the schema and the discriminators are registered, we can gain access to them using the syntax of dependency
 injection:
 
 ```typescript

@@ -14,7 +14,7 @@ $ npm i kindagoose
 $ yarn add kindagoose
 ```
 
-However, for the module to work you also need the following packages:
+However, for the module to work you, you also need the following packages:
 
 * `@nestjs/common`: `>=9.0.0`
 * `@nestjs/core`: `>=9.0.0`
