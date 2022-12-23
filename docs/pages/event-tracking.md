@@ -77,6 +77,8 @@ Let's dissect this code:
 4. `@Post` decorator flags the `sendToElastic` method as a method that'll react to a `save` and is executed after the
    save.
 
+!>Only one event tracker can be registered per schema. If you create multiple trackers for the same schema, then `Kindagoose` will take the first one it finds in the module's provider list.<br>2. Discriminators inherit base schema trackers!
+
 To apply our tracker just add it into the array of the providers' module, where you have registered all of your schemas.
 
 ```typescript
