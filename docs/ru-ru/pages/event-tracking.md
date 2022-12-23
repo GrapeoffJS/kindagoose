@@ -47,18 +47,18 @@ export class User extends TimeStamps {
 /* user.tracker.ts */
 
 import { DocumentType } from '@typegoose/typegoose';
-import { EventTrackerFor, Pre, Post, PostEvents, PreEvents } from 'kindagoose';
+import { EventTrackerFor, Pre, Post } from 'kindagoose';
 
 @EventTrackerFor(User)
 export class UserTracker {
   constructor(private readonly elasticSearchService: ElasticSearchService) {}
 
-  @Pre(PreEvents.SAVE)
+  @Pre('save')
   log() {
     console.log('Пользователь будет сохранён');
   }
 
-  @Post(PostEvents.SAVE)
+  @Post('save')
   async sendToElastic(data: DocumentType<User>) {
     await this.elasticSearchService.index('index-name', {
       firstName: data.firstName,
