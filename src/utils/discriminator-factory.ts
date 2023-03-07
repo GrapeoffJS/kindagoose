@@ -4,7 +4,6 @@ import { addModelToTypegoose, buildSchema, getName } from '@typegoose/typegoose'
 import { ModelType } from '@typegoose/typegoose/lib/types';
 import { Connection } from 'mongoose';
 
-import { Hook } from '../constants/hook';
 import { EVENT_TRACKER_FOR_KEY, POST_METADATA_KEY, PRE_METADATA_KEY } from '../constants/kindagoose.constants';
 import { AnyClass } from '../interfaces/any-class.interface';
 
@@ -33,18 +32,20 @@ export const discriminatorFactory = (discriminator: AnyClass) => {
         if (tracker) {
             const { instance } = tracker;
 
-            metadataScanner.scanFromPrototype(instance, Object.getPrototypeOf(instance), propertyName => {
-                const propertyPreMetadata: Hook[] = reflector.get(PRE_METADATA_KEY, instance[propertyName]) || [];
-                const propertyPostMetadata: Hook[] = reflector.get(POST_METADATA_KEY, instance[propertyName]) || [];
+            const methodNames = metadataScanner.getAllMethodNames(Object.getPrototypeOf(instance));
+
+            for (const methodName of methodNames) {
+                const propertyPreMetadata = reflector.get(PRE_METADATA_KEY, instance[methodName]) || [];
+                const propertyPostMetadata = reflector.get(POST_METADATA_KEY, instance[methodName]) || [];
 
                 for (const preEventName of propertyPreMetadata) {
-                    mongooseDiscriminatorSchema.pre(preEventName, instance[propertyName].bind(instance));
+                    mongooseDiscriminatorSchema.pre(preEventName, instance[methodName].bind(instance));
                 }
 
                 for (const postEventName of propertyPostMetadata) {
-                    mongooseDiscriminatorSchema.post(postEventName, instance[propertyName].bind(instance));
+                    mongooseDiscriminatorSchema.post(postEventName, instance[methodName].bind(instance));
                 }
-            });
+            }
         }
 
         return addModelToTypegoose(

@@ -1,4 +1,3 @@
-export { Hook } from './constants/hook';
 export { EventTrackerFor } from './decorators/event-tracker-for.decorator';
 export { InjectConnection } from './decorators/inject-connection.decorator';
 export { InjectModel } from './decorators/inject-model.decorator';
@@ -7,6 +6,7 @@ export { Pre } from './decorators/pre.decorator';
 export { AnyClass } from './interfaces/any-class.interface';
 export { KindagooseModuleAsyncOptions } from './interfaces/kindagoose-module-async-options';
 export { KindagooseModuleOptions } from './interfaces/kindagoose-module-options.interface';
+export { PreHook } from './interfaces/pre-hook';
 export { SchemaRegistrationOptions } from './interfaces/schema-registration-options.interface';
 export { KindagooseModule } from './modules/kindagoose.module';
 export { getConnectionToken } from './utils/get-connection-token';
