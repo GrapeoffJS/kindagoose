@@ -12,8 +12,7 @@ versions to be installed when working on your project:
 * `reflect-metadata`: `>=0.1.13`
 * `rxjs`: `^7.5.6 || < 9.0.0`
 
-As you can see, for now these are one of the latest versions of the given packages at the time of the first half of
-2022. Someone may notice that `kindagoose` actually works perfectly even with the older versions of these packages and
+As you can see, for now these are one of the latest versions of the given packages for the moment of writing this lines. Someone may notice that `kindagoose` actually works perfectly even with the older versions of these packages and
 may say that making the new versions to be up-to-date as a requirement is inexpedient. But I made this decision because
 I wanted to distance the obsolescence of my library as much as possible in case if I am not able to support it
 anymore.
