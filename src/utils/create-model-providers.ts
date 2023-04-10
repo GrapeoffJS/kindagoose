@@ -16,7 +16,7 @@ export const createModelProviders = (schemas: SchemaRegistrationOptions[], conne
         providers.push({
             provide: modelToken,
             inject: [getConnectionToken(connectionName), DiscoveryService, Reflector, MetadataScanner],
-            useFactory: modelFactory(schema.schema),
+            useFactory: modelFactory(schema.schema, connectionName),
         });
 
         if (schema.discriminators) {
@@ -30,7 +30,7 @@ export const createModelProviders = (schemas: SchemaRegistrationOptions[], conne
                         Reflector,
                         MetadataScanner,
                     ],
-                    useFactory: discriminatorFactory(discriminator),
+                    useFactory: discriminatorFactory(discriminator, connectionName),
                 });
             }
         }

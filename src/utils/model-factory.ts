@@ -5,14 +5,23 @@ import { Connection } from 'mongoose';
 
 import { EVENT_TRACKER_FOR_KEY, POST_METADATA_KEY, PRE_METADATA_KEY } from '../constants/kindagoose.constants';
 import { AnyClass } from '../interfaces/any-class.interface';
+import { getModelToken } from './get-model-token';
 
-export const modelFactory = (schema: AnyClass) => {
+export const modelFactory = (schema: AnyClass, connectionName?: string) => {
     return (
         connection: Connection,
         discoveryService: DiscoveryService,
         reflector: Reflector,
         metadataScanner: MetadataScanner,
     ) => {
+        const existingModel = discoveryService
+            .getProviders()
+            .find(provider => provider.token === getModelToken(schema.name, connectionName));
+
+        if (existingModel) {
+            return existingModel;
+        }
+
         const providers = discoveryService.getProviders().filter(provider => provider.instance);
         let tracker: InstanceWrapper | null = null;
 

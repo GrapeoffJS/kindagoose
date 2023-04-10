@@ -6,8 +6,9 @@ import { Connection } from 'mongoose';
 
 import { EVENT_TRACKER_FOR_KEY, POST_METADATA_KEY, PRE_METADATA_KEY } from '../constants/kindagoose.constants';
 import { AnyClass } from '../interfaces/any-class.interface';
+import { getModelToken } from './get-model-token';
 
-export const discriminatorFactory = (discriminator: AnyClass) => {
+export const discriminatorFactory = (discriminator: AnyClass, connectionName?: string) => {
     return (
         connection: Connection,
         model: ModelType<any>,
@@ -15,6 +16,14 @@ export const discriminatorFactory = (discriminator: AnyClass) => {
         reflector: Reflector,
         metadataScanner: MetadataScanner,
     ) => {
+        const existingDiscriminator = discoveryService
+            .getProviders()
+            .find(provider => provider.token === getModelToken(discriminator.name, connectionName));
+
+        if (existingDiscriminator) {
+            return existingDiscriminator;
+        }
+
         const providers = discoveryService.getProviders().filter(provider => provider.instance);
         let tracker: InstanceWrapper | null = null;
 
