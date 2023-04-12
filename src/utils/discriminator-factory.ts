@@ -18,7 +18,7 @@ export const discriminatorFactory = (discriminator: AnyClass, connectionName?: s
     ) => {
         const existingDiscriminator = discoveryService
             .getProviders()
-            .find(provider => provider.token === getModelToken(discriminator.name, connectionName));
+            .find(provider => provider.token === getModelToken(discriminator.name, connectionName))?.instance;
 
         if (existingDiscriminator) {
             return existingDiscriminator;

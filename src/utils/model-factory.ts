@@ -16,7 +16,7 @@ export const modelFactory = (schema: AnyClass, connectionName?: string) => {
     ) => {
         const existingModel = discoveryService
             .getProviders()
-            .find(provider => provider.token === getModelToken(schema.name, connectionName));
+            .find(provider => provider.token === getModelToken(schema.name, connectionName))?.instance;
 
         if (existingModel) {
             return existingModel;
