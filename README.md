@@ -86,8 +86,8 @@ import { ReturnModelType } from "@typegoose/typegoose";
 @Injectable()
 export class UsersService {
   constructor(
-          @InjectModel(User)
-          private readonly userModel: ReturnModelType<typeof User>,
+      @InjectModel(User)
+      private readonly userModel: ReturnModelType<typeof User>,
   ) {}
 
   async create(createUserDto: CreateUserDto) {
