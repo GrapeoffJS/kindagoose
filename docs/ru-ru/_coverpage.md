@@ -1,4 +1,4 @@
-# Kindagoose <small>1.2.2</small>
+# Kindagoose <small>1.3.7</small>
 
 > Интеграция Typegoose c NestJS!
 
