@@ -5,10 +5,10 @@
 версий пакетов. По этой причине, `kindagoose` внутри `peerDependencies` требует наличие в вашем проекте данных пакетов
 таких версий:
 
-* `@nestjs/common`: `>=9.2.1`
-* `@nestjs/core`: `>=9.3.9`
-* `@typegoose/typegoose`: `>=11.0.0`
-* `mongoose`: `>=~7.0.3`
+* `@nestjs/common`: `>=10.2.10`
+* `@nestjs/core`: `>=10.2.10`
+* `@typegoose/typegoose`: `>=11.7.1`
+* `mongoose`: `>=8.0.1`
 * `reflect-metadata`: `>=0.1.13`
 * `rxjs`: `^7.5.6 || < 9.0.0`
 
